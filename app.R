@@ -160,4 +160,4 @@ server <- function(input, output) {
             panel.border=element_blank()) 
   }
 }
-shinyApp(ui, server)
+shinyApp(ui = ui, server = server)
