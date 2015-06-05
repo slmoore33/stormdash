@@ -9,10 +9,10 @@ ui <- dashboardPage(skin = "green",
                     dashboardHeader(title = "Areas of Interest"),
                     dashboardSidebar(
                       sidebarMenu(
-                        menuItem("Home", tabName = "home", icon = icon("home")),
                         menuItem("Public Awareness", tabName = "aware", icon = icon("bar-chart")),
                         menuItem("Physical Data", tabName = "datatab", icon = icon("database")),
-                        menuItem("Inspections", tabName = "inspect", icon = icon("file-pdf-o"))
+                        menuItem("Inspections", tabName = "inspect", icon = icon("file-pdf-o")),
+                        menuItem("Home", tabName = "home", icon = icon("home")),
                       )
                     ),
                     dashboardBody(
