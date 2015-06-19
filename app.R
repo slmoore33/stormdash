@@ -11,8 +11,8 @@ ui <- dashboardPage(skin = "green",
                       sidebarMenu(
                         menuItem("Home", tabName = "home", icon = icon("home")),
                         menuItem("Physical Data", tabName = "datatab", icon = icon("database")),
-                        menuItem("Inspections", tabName = "inspect", icon = icon("file-pdf-o")),
-                        menuItem("Public Awareness", tabName = "aware", icon = icon("bar-chart"))
+                        #menuItem("Inspections", tabName = "inspect", icon = icon("file-pdf-o")),
+                        menuItem("Inspections", tabName = "aware", icon = icon("bar-chart"))
                       )
                     ),
                     dashboardBody(
@@ -30,13 +30,13 @@ ui <- dashboardPage(skin = "green",
                         tabItem(tabName = "aware",
                                 fluidRow(
                                   box(
-                                    title = "Amount Spent", width = 5, solidHeader = TRUE, status =
+                                    title = "Inspection Quota Met", width = 5, solidHeader = TRUE, status =
                                       "primary", collapsible = TRUE, plotOutput("plot2", height = 250
                                       )
                                   ),
                                   
                                   box(
-                                    title = "Percent Community Reached", width = 5, solidHeader = TRUE, status =
+                                    title = "Percent Commercial Inspections", width = 5, solidHeader = TRUE, status =
                                       "primary", collapsible = TRUE, plotOutput("plot3", height = 250
                                       )
                                   )
@@ -53,7 +53,7 @@ ui <- dashboardPage(skin = "green",
                                   box(
                                     title = "Inputs", background = "black", color = "black",
                                     solidHeader = TRUE,
-                                    sliderInput("slider", "Number of observations:", 1, 100, 50)
+                                    sliderInput("slider", "Number of Inspections:", 1, 100, 50)
                                   )
                                 )
                         ),
@@ -69,19 +69,19 @@ ui <- dashboardPage(skin = "green",
                                            selectInput("county", 
                                                        "County:", 
                                                        c("All", 
-                                                         unique(as.character(data$County))))
+                                                         unique(as.character(chem$County))))
                                     ),   
                                     column(4, 
                                            selectInput("station", 
                                                        "StationCode:", 
                                                        c("All", 
-                                                         unique(as.character(data$StationCode))))
+                                                         unique(as.character(chem$StationCode))))
                                     ),
                                     column(4, 
                                            selectInput("analyte", 
                                                        "AnalyteName:", 
                                                        c("All", 
-                                                         unique(as.character(data$AnalyteName))))
+                                                         unique(as.character(chem$AnalyteName))))
                                     )  
                                   ),
                                   # Create a new row for the table.
@@ -104,7 +104,7 @@ server <- function(input, output) {
   histdata <- rnorm(500)
   
   output$text1 <- renderText({ 
-    "Since the first Municipal Separate Storm Sewer System (MS4) National Pollutant Discharge Elimination System (NPDES) permits were issued 20 years ago, regulators and regulated agencies have been struggling to make management decisions about reducing stormwater pollutant discharges and their impacts in receiving waters. In many cases, these struggles are due in large part to the fact that municipal stormwater programs spend millions of dollars each year in managing urban runoff through the collection of monitoring and other program data. While these data are typically reported, they are not always evaluated thoroughly or used as a proactive decision-making tool to evaluate program effectiveness. The complexity of these data may impede their utility as information necessary for decision-making. For others, the information void was often a reflection of missing data, timing of monitoring and results relative to decisions, and poor communication content and style. As stormwater regulatory requirements have increased in volume, complexity and cost, the need for improved, effective information analysis and communication is more essential. Electronic data collection and reporting, online data warehouses, web portals, and programming platforms present new and emerging opportunities for rapid turnaround of the specific information managers require in user-friendly, customizable formats. For this project, we inventoried information and monitoring data current available to stormwater agencies, and interviewed stormwater managers throughout California to identify common information needs and desires for improved decision-making and their relationship to program objectives. Stormwater managers identified three specific areas of interest. These included: 1) public awareness and response; 2) measurements of particular constituents of interest; and 3) inspection results. In an effort to initiate an improved communication strategy for stormwater managers we developed a prototype, web-based, stormwater dashboard, that could be used to provide the most important information stormwater managers need for making rapid decisions and tracking the results of those decisions. This prototype will help to inform program managers and permit writers with a better understanding of the types of information and data management required to operationalize such dashboards in a consistent and comparable manner both within and between programs in California."
+    "Since the first Municipal Separate Storm Sewer System (MS4) National Pollutant Discharge Elimination System (NPDES) permits were issued 20 years ago, regulators and regulated agencies have been struggling to make management decisions about reducing stormwater pollutant discharges and their impacts in receiving waters. In many cases, these struggles are due in large part to the fact that municipal stormwater programs spend millions of dollars each year in managing urban runoff through the collection of monitoring and other program data. While these data are typically reported, they are not always evaluated thoroughly or used as a proactive decision-making tool to evaluate program effectiveness. The complexity of these data may impede their utility as information necessary for decision-making. For others, the information void was often a reflection of missing data, timing of monitoring and results relative to decisions, and poor communication content and style. As stormwater regulatory requirements have increased in volume, complexity and cost, the need for improved, effective information analysis and communication is more essential."
   })
   
   output$plot1 <- renderPlot({
